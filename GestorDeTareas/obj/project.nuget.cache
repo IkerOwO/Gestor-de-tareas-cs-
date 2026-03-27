@@ -1,8 +1,23 @@
 {
   "version": 2,
-  "dgSpecHash": "veAe2qZjUdw=",
+  "dgSpecHash": "hPxPBKnUQSo=",
   "success": true,
   "projectFilePath": "C:\\Users\\ikerg\\Documents\\Proyectos\\C#\\Gestor-de-tareas-cs-\\GestorDeTareas\\GestorDeTareas.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "expectedPackageFiles": [
+    "C:\\Users\\ikerg\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference System.Collections.NonGeneric will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "C:\\Users\\ikerg\\Documents\\Proyectos\\C#\\Gestor-de-tareas-cs-\\GestorDeTareas\\GestorDeTareas.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\ikerg\\Documents\\Proyectos\\C#\\Gestor-de-tareas-cs-\\GestorDeTareas\\GestorDeTareas.csproj",
+      "libraryId": "System.Collections.NonGeneric",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

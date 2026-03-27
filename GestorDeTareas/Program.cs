@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace GestorDeTareas
 {
@@ -89,6 +90,7 @@ namespace GestorDeTareas
                 string? resp = Console.ReadLine();
                 if (resp.ToLower().Equals("si"))
                 {
+                    Console.Clear();
                     InsertarTarea(ruta);
                 }
                 else
@@ -101,8 +103,29 @@ namespace GestorDeTareas
 
         public static void InsertarTarea(string? ruta)
         {
-                Console.Write("Escriba la tarea a realizar: ");
+            ArrayList tareasArray = new ArrayList();
+            Console.Write("Cuantas tareas desea agregar?: ");
+            int numTareas = int.Parse(Console.ReadLine());
 
+            for (int i = 0; i < numTareas; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("Introduce la tarea a realizar: ");
+                Console.ResetColor();
+                string? tarea = Console.ReadLine();
+                tareasArray.Add($"{tarea}{i}");
+                Console.Clear();
+            }
+
+            /* TODO: ARREGLAR ERROR DE AQUI */
+            Console.WriteLine("Estas son las tareas que se van a agregar: \n");
+
+            for (int j = 0; j < tareasArray.Count; j++)
+            {
+                Console.WriteLine(tareasArray[j]);
+            }
+
+            File.WriteAllText(ruta, tareasArray.ToString());
         }
     }
 }
