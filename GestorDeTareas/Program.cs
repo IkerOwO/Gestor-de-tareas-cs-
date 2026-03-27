@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Collections;
 
 namespace GestorDeTareas
 {
+    /*
+        LÓGICA DEL PROGRAMA:
+            - El usuario introduce el usuario del PC para poder crear el archivo en los documentos del usuario
+            - El programa comprueba si el archivo "tareas.txt" ya existe, si existe lee de el. Si no existe pasa a que el usuario introduzca tareas
+            - Una vez acaba de leer la función, esta pregunta al usuario si quiere introducir mas tareas, llamando a la función "InsertarTarea"
+     */
     class Program
     {
         public class Archivo
         {
-            public static string? nombreArchivo { get; set; }
             public static string? user { get; set; }
             public static string? ruta { get; set; }
         }
@@ -21,35 +27,32 @@ namespace GestorDeTareas
             Console.ResetColor();
             Archivo.user = Console.ReadLine();
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("Introduce el nombre del archivo: ");
-            Console.ResetColor();
-            Archivo.nombreArchivo = Console.ReadLine();
+            Archivo.ruta = $"C:\\Users\\{Archivo.user}\\Documents\\tareas.txt";
 
-            Archivo.ruta = $"C:\\Users\\{Archivo.user}\\Documents\\{Archivo.nombreArchivo}.txt";
-
-            CrearArchivo(Archivo.user, Archivo.nombreArchivo, Archivo.ruta);
+            CrearArchivo(Archivo.user, Archivo.ruta);
             Console.Clear();
         }
 
-        static void CrearArchivo(string? usuario, string? nombreArchivo, string? ruta)
+        public static void CrearArchivo(string? usuario, string? ruta)
         {
             try
             {
-                if (!File.Exists($"C:\\Users\\{usuario}\\Documents\\{nombreArchivo}.txt"))
+                if (!File.Exists($"C:\\Users\\{usuario}\\Documents\\tareas.txt"))
                 {
-                    File.Create($"C:\\Users\\{usuario}\\Documents\\{nombreArchivo}.txt");
+                    File.Create($"C:\\Users\\{usuario}\\Documents\\tareas.txt");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Archivo creado con exito");
                     Console.ResetColor();
+                    InsertarTarea(ruta);
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("El archivo ya existe.");
                     Console.ResetColor();
+                    LeerArchivo(ruta);
                 }
-                LeerArchivo(ruta);
+                
                 Console.Clear();
             }
             catch (Exception e)
@@ -59,8 +62,8 @@ namespace GestorDeTareas
                 Console.ResetColor();
             }
         }
-        
-        static void LeerArchivo(string? ruta)
+
+        public static void LeerArchivo(string? ruta)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Leyendo Archivo...");
@@ -68,7 +71,7 @@ namespace GestorDeTareas
             Thread.Sleep(5000); // PAUSAR POR 5s
             Console.Clear();
 
-            if(File.Exists(ruta))
+            if (File.Exists(ruta))
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("---------CONTENIDO DEL ARCHIVO---------\n");
@@ -77,37 +80,52 @@ namespace GestorDeTareas
                 using (StreamReader sr = File.OpenText(ruta))
                 {
                     string s;
-                    bool hayLineas = false;
 
                     while ((s = sr.ReadLine()) != null)
                     {
                         Console.WriteLine(s);
-                        hayLineas = true;
-                    }
-
-                    if (!hayLineas)
-                    {
-                        Console.WriteLine("Archivo Vacio");
-                        InsertarTarea(ruta);
                     }
                 }
                 Console.WriteLine("Desea escribir alguna tarea mas? (si/no): ");
                 string? resp = Console.ReadLine();
                 if (resp.ToLower().Equals("si"))
                 {
+                    Console.Clear();
                     InsertarTarea(ruta);
-                } else
+                }
+                else
                 {
                     Console.WriteLine("Saliendo del programa...");
                     Thread.Sleep(5000);
                 }
             }
+        }
 
-            static void InsertarTarea(string? ruta)
+        public static void InsertarTarea(string? ruta)
+        {
+            List<string> tareasArray = new List<string>();
+            Console.Write("Cuantas tareas desea agregar?: ");
+            int numTareas = int.Parse(Console.ReadLine());
+            Console.Clear();
+
+            for (int i = 0; i < numTareas; i++)
             {
-                Console.Write("Escriba la tarea a realizar: ");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine("Introduce la tarea a realizar: ");
+                Console.ResetColor();
+                string? tarea = Console.ReadLine();
+                tareasArray.Add($"{tarea}{i+1}");
+                Console.Clear();
             }
 
+            Console.WriteLine("Estas son las tareas que se van a agregar: \n");
+
+            for (int j = 0; j < tareasArray.Count; j++)
+            {
+                Console.WriteLine(tareasArray[j]);
+            }
+
+            File.WriteAllText(ruta, string.Join(Environment.NewLine, tareasArray));
         }
     }
 }
