@@ -103,9 +103,10 @@ namespace GestorDeTareas
 
         public static void InsertarTarea(string? ruta)
         {
-            ArrayList tareasArray = new ArrayList();
+            List<string> tareasArray = new List<string>();
             Console.Write("Cuantas tareas desea agregar?: ");
             int numTareas = int.Parse(Console.ReadLine());
+            Console.Clear();
 
             for (int i = 0; i < numTareas; i++)
             {
@@ -113,11 +114,10 @@ namespace GestorDeTareas
                 Console.WriteLine("Introduce la tarea a realizar: ");
                 Console.ResetColor();
                 string? tarea = Console.ReadLine();
-                tareasArray.Add($"{tarea}{i}");
+                tareasArray.Add($"{tarea}{i+1}");
                 Console.Clear();
             }
 
-            /* TODO: ARREGLAR ERROR DE AQUI */
             Console.WriteLine("Estas son las tareas que se van a agregar: \n");
 
             for (int j = 0; j < tareasArray.Count; j++)
@@ -125,7 +125,7 @@ namespace GestorDeTareas
                 Console.WriteLine(tareasArray[j]);
             }
 
-            File.WriteAllText(ruta, tareasArray.ToString());
+            File.WriteAllText(ruta, string.Join(Environment.NewLine, tareasArray));
         }
     }
 }
