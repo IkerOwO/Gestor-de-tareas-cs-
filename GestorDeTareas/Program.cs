@@ -12,19 +12,24 @@ namespace GestorDeTareas
         }
         static void Main(string[] args)
         {
+            Console.WriteLine("Pulse una tecla para empezar...");
+            Console.ReadKey();
+            Console.Clear();
+
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Introduce el usuario del PC: ");
+            Console.Write("Introduce el usuario del PC: ");
             Console.ResetColor();
             Archivo.user = Console.ReadLine();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Introduce el nombre del archivo: ");
+            Console.Write("Introduce el nombre del archivo: ");
             Console.ResetColor();
             Archivo.nombreArchivo = Console.ReadLine();
 
             Archivo.ruta = $"C:\\Users\\{Archivo.user}\\Documents\\{Archivo.nombreArchivo}.txt";
 
             CrearArchivo(Archivo.user, Archivo.nombreArchivo, Archivo.ruta);
+            Console.Clear();
         }
 
         static void CrearArchivo(string? usuario, string? nombreArchivo, string? ruta)
@@ -72,11 +77,33 @@ namespace GestorDeTareas
                 using (StreamReader sr = File.OpenText(ruta))
                 {
                     string s;
-                    while ((s = sr.ReadLine()) != null)
+                    if(sr.ReadLine() == null)
                     {
-                        Console.WriteLine(s);
+                        Console.WriteLine("Archivo Vacio");
+                        InsertarTarea(ruta);
+                    } else
+                    {
+                        while ((s = sr.ReadLine()) != null)
+                        {
+                            Console.WriteLine(s);
+                        }
                     }
                 }
+                Console.WriteLine("Desea escribir alguna tarea mas? (si/no): ");
+                string? resp = Console.ReadLine();
+                if (resp.ToLower().Equals("si"))
+                {
+                    InsertarTarea(ruta);
+                } else
+                {
+                    Console.WriteLine("Saliendo del programa...");
+                    Thread.Sleep(5000);
+                }
+            }
+
+            static void InsertarTarea(string? ruta)
+            {
+                Console.Write("Escriba la tarea a realizar: ");
             }
 
         }
