@@ -77,16 +77,18 @@ namespace GestorDeTareas
                 using (StreamReader sr = File.OpenText(ruta))
                 {
                     string s;
-                    if(sr.ReadLine() == null)
+                    bool hayLineas = false;
+
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(s);
+                        hayLineas = true;
+                    }
+
+                    if (!hayLineas)
                     {
                         Console.WriteLine("Archivo Vacio");
                         InsertarTarea(ruta);
-                    } else
-                    {
-                        while ((s = sr.ReadLine()) != null)
-                        {
-                            Console.WriteLine(s);
-                        }
                     }
                 }
                 Console.WriteLine("Desea escribir alguna tarea mas? (si/no): ");
