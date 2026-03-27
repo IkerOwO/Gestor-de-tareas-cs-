@@ -13,8 +13,7 @@ namespace GestorDeTareas
     {
         public class Archivo
         {
-            public static string? user { get; set; }
-            public static string? ruta { get; set; }
+            public string? ruta { get; set; }
         }
         static void Main(string[] args)
         {
@@ -22,35 +21,60 @@ namespace GestorDeTareas
             Console.ReadKey();
             Console.Clear();
 
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("Introduce el usuario del PC: ");
-            Console.ResetColor();
-            Archivo.user = Console.ReadLine();
+            string ruta = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                "tareas.txt"
+            );
 
-            Archivo.ruta = $"C:\\Users\\{Archivo.user}\\Documents\\tareas.txt";
-
-            CrearArchivo(Archivo.user, Archivo.ruta);
-            Console.Clear();
+            CrearArchivo(ruta);
+            menu(ruta);
+           
         }
 
-        public static void CrearArchivo(string? usuario, string? ruta)
+        public static void menu(string? ruta)
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("1.Ver Tareas\n2.Crear Tareas\n3.Salir");
+            Console.ResetColor();
+            int opc = int.Parse(Console.ReadLine());
+            switch (opc)
+            {
+                case 1:
+                    LeerArchivo(ruta);
+                    break;
+                case 2:
+                    CrearArchivo(ruta);
+                    Console.Clear();
+                    break;
+                case 3:
+                    Console.WriteLine("Saliendo del programa...");
+                    Thread.Sleep(5000);
+                    break;
+                default:
+                    Console.WriteLine("OPCION NO VALIDA...");
+                    break;
+            }
+        }
+
+        public static void CrearArchivo(string? ruta)
+        {
+            Console.WriteLine("Creando Archivo...");
+            Thread.Sleep(3000);
+            Console.Clear();
             try
             {
-                if (!File.Exists($"C:\\Users\\{usuario}\\Documents\\tareas.txt"))
+                if (!File.Exists(ruta))
                 {
-                    File.Create($"C:\\Users\\{usuario}\\Documents\\tareas.txt");
+                    File.Create(ruta).Close();
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Archivo creado con exito");
                     Console.ResetColor();
-                    InsertarTarea(ruta);
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("El archivo ya existe.");
                     Console.ResetColor();
-                    LeerArchivo(ruta);
                 }
                 
                 Console.Clear();
@@ -88,15 +112,10 @@ namespace GestorDeTareas
                 }
                 Console.WriteLine("Desea escribir alguna tarea mas? (si/no): ");
                 string? resp = Console.ReadLine();
-                if (resp.ToLower().Equals("si"))
+                if (resp?.ToLower() == "si")
                 {
                     Console.Clear();
                     InsertarTarea(ruta);
-                }
-                else
-                {
-                    Console.WriteLine("Saliendo del programa...");
-                    Thread.Sleep(5000);
                 }
             }
         }
@@ -114,7 +133,7 @@ namespace GestorDeTareas
                 Console.WriteLine("Introduce la tarea a realizar: ");
                 Console.ResetColor();
                 string? tarea = Console.ReadLine();
-                tareasArray.Add($"{tarea}{i+1}");
+                tareasArray.Add($"{i + 1}. {tarea}");
                 Console.Clear();
             }
 
@@ -125,7 +144,8 @@ namespace GestorDeTareas
                 Console.WriteLine(tareasArray[j]);
             }
 
-            File.WriteAllText(ruta, string.Join(Environment.NewLine, tareasArray));
+            // ASI NO SOBREESCRIBIMOS
+            File.AppendAllText(ruta, string.Join(Environment.NewLine, tareasArray) + Environment.NewLine);
         }
     }
 }
