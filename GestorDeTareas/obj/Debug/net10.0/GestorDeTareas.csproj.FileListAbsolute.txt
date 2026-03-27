@@ -1,0 +1,15 @@
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\bin\Debug\net10.0\GestorDeTareas.exe
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\bin\Debug\net10.0\GestorDeTareas.deps.json
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\bin\Debug\net10.0\GestorDeTareas.runtimeconfig.json
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\bin\Debug\net10.0\GestorDeTareas.dll
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\bin\Debug\net10.0\GestorDeTareas.pdb
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.AssemblyInfoInputs.cache
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.AssemblyInfo.cs
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.csproj.CoreCompileInputs.cache
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.sourcelink.json
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.dll
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\refint\GestorDeTareas.dll
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.pdb
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\GestorDeTareas.genruntimeconfig.cache
+C:\Users\ikerg\Documents\Proyectos\C#\Gestor-de-tareas-cs-\GestorDeTareas\obj\Debug\net10.0\ref\GestorDeTareas.dll
